@@ -223,9 +223,9 @@ class Encoder:
         # add r64, imm8/imm32
         if dst.type == 'reg' and src.type == 'imm':
             if -128 <= src.value < 128:
-                return bytes([0x83]) + cls._encode_modrm(op32 & 0xf8, 0, dst) + cls._encode_imm(src.value, 1)
+                return bytes([0x83]) + cls._encode_modrm(op32 & 0xf8, 0, dst.value) + cls._encode_imm(src.value, 1)
             else:
-                return bytes([0x81]) + cls._encode_modrm(op32 & 0xf8, 0, dst) + cls._encode_imm(src.value, 4)
+                return bytes([0x81]) + cls._encode_modrm(op32 & 0xf8, 0, dst.value) + cls._encode_imm(src.value, 4)
         
         # add r64, r64
         if dst.type == 'reg' and src.type == 'reg':
@@ -244,9 +244,9 @@ class Encoder:
         # cmp r64, imm
         if dst.type == 'reg' and src.type == 'imm':
             if -128 <= src.value < 128:
-                return bytes([0x83]) + cls._encode_modrm(0x38, 0, dst) + cls._encode_imm(src.value, 1)
+                return bytes([0x83]) + cls._encode_modrm(0x38, 0, dst.value) + cls._encode_imm(src.value, 1)
             else:
-                return bytes([0x81]) + cls._encode_modrm(0x38, 0, dst) + cls._encode_imm(src.value, 4)
+                return bytes([0x81]) + cls._encode_modrm(0x38, 0, dst.value) + cls._encode_imm(src.value, 4)
         
         # cmp r64, r64
         if dst.type == 'reg' and src.type == 'reg':

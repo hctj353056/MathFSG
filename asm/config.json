@@ -1,0 +1,81 @@
+{
+  "name": "MathFSG/x86-64 Assembler",
+  "version": "1.0.0",
+  "description": "x86-64汇编器配置",
+  "locale": "zh-CN",
+  
+  "registers": {
+    "64bit": {
+      "rax": "累加器", "rcx": "计数", "rdx": "数据", "rbx": "基址",
+      "rsp": "栈指针", "rbp": "帧指针", "rsi": "源索引", "rdi": "目标索引",
+      "r8": "通用8", "r9": "通用9", "r10": "通用10", "r11": "通用11",
+      "r12": "通用12", "r13": "通用13", "r14": "通用14", "r15": "通用15"
+    },
+    "32bit": {
+      "eax": "累加器32", "ecx": "计数32", "edx": "数据32", "ebx": "基址32",
+      "esp": "栈指针32", "ebp": "帧指针32", "esi": "源索引32", "edi": "目标索引32",
+      "r8d": "通用8_32", "r9d": "通用9_32", "r10d": "通用10_32", "r11d": "通用11_32",
+      "r12d": "通用12_32", "r13d": "通用13_32", "r14d": "通用14_32", "r15d": "通用15_32"
+    },
+    "16bit": {
+      "ax": "累加器16", "cx": "计数16", "dx": "数据16", "bx": "基址16",
+      "sp": "栈指针16", "bp": "帧指针16", "si": "源索引16", "di": "目标索引16",
+      "r8w": "通用8_16", "r9w": "通用9_16", "r10w": "通用10_16", "r11w": "通用11_16",
+      "r12w": "通用12_16", "r13w": "通用13_16", "r14w": "通用14_16", "r15w": "通用15_16"
+    },
+    "8bit": {
+      "al": "累加器低8", "cl": "计数低8", "dl": "数据低8", "bl": "基址低8",
+      "sil": "源索引低8", "dil": "目标索引低8", "bpl": "帧指针低8", "spl": "栈指针低8",
+      "r8b": "通用8_8", "r9b": "通用9_8", "r10b": "通用10_8", "r11b": "通用11_8",
+      "r12b": "通用12_8", "r13b": "通用13_8", "r14b": "通用14_8", "r15b": "通用15_8"
+    }
+  },
+
+  "instructions": {
+    "mov": {"zh": "传送", "category": "data_transfer", "ops": 2, "encoding": "R/M, R/M"},
+    "push": {"zh": "入栈", "category": "stack", "ops": 1, "encoding": "R/M"},
+    "pop": {"zh": "出栈", "category": "stack", "ops": 1, "encoding": "R/M"},
+    "add": {"zh": "加", "category": "arithmetic", "ops": 2, "encoding": "R/M, R/M"},
+    "sub": {"zh": "减", "category": "arithmetic", "ops": 2, "encoding": "R/M, R/M"},
+    "inc": {"zh": "自增", "category": "arithmetic", "ops": 1, "encoding": "R/M"},
+    "dec": {"zh": "自减", "category": "arithmetic", "ops": 1, "encoding": "R/M"},
+    "neg": {"zh": "取负", "category": "arithmetic", "ops": 1, "encoding": "R/M"},
+    "mul": {"zh": "乘", "category": "arithmetic", "ops": 1, "encoding": "R/M"},
+    "div": {"zh": "除", "category": "arithmetic", "ops": 1, "encoding": "R/M"},
+    "and": {"zh": "与", "category": "logic", "ops": 2, "encoding": "R/M, R/M"},
+    "or": {"zh": "或", "category": "logic", "ops": 2, "encoding": "R/M, R/M"},
+    "xor": {"zh": "异或", "category": "logic", "ops": 2, "encoding": "R/M, R/M"},
+    "not": {"zh": "非", "category": "logic", "ops": 1, "encoding": "R/M"},
+    "cmp": {"zh": "比较", "category": "logic", "ops": 2, "encoding": "R/M, R/M"},
+    "test": {"zh": "测试", "category": "logic", "ops": 2, "encoding": "R/M, R/M"},
+    "jmp": {"zh": "跳转", "category": "control_flow", "ops": 1, "encoding": "label"},
+    "je": {"zh": "等于跳转", "category": "control_flow", "ops": 1, "encoding": "label"},
+    "jne": {"zh": "不等跳转", "category": "control_flow", "ops": 1, "encoding": "label"},
+    "jl": {"zh": "小于跳转", "category": "control_flow", "ops": 1, "encoding": "label"},
+    "jle": {"zh": "小于等于跳转", "category": "control_flow", "ops": 1, "encoding": "label"},
+    "jg": {"zh": "大于跳转", "category": "control_flow", "ops": 1, "encoding": "label"},
+    "jge": {"zh": "大于等于跳转", "category": "control_flow", "ops": 1, "encoding": "label"},
+    "call": {"zh": "调用", "category": "control_flow", "ops": 1, "encoding": "label/R/M"},
+    "ret": {"zh": "返回", "category": "control_flow", "ops": 0, "encoding": "-"},
+    "nop": {"zh": "空操作", "category": "other", "ops": 0, "encoding": "-"},
+    "hlt": {"zh": "停机", "category": "other", "ops": 0, "encoding": "-"}
+  },
+
+  "keywords": {
+    "zh_to_en": {
+      "传送": "mov", "入栈": "push", "出栈": "pop",
+      "加": "add", "减": "sub", "自增": "inc", "自减": "dec",
+      "取负": "neg", "乘": "mul", "除": "div",
+      "与": "and", "或": "or", "异或": "xor", "非": "not",
+      "比较": "cmp", "测试": "test",
+      "跳转": "jmp", "等于跳转": "je", "不等跳转": "jne",
+      "小于跳转": "jl", "小于等于跳转": "jle", "大于跳转": "jg", "大于等于跳转": "jge",
+      "调用": "call", "返回": "ret",
+      "空操作": "nop", "停机": "hlt",
+      "累加器": "rax", "计数": "rcx", "数据": "rdx", "基址": "rbx",
+      "栈指针": "rsp", "帧指针": "rbp", "源索引": "rsi", "目标索引": "rdi",
+      "通用8": "r8", "通用9": "r9", "通用10": "r10", "通用11": "r11",
+      "通用12": "r12", "通用13": "r13", "通用14": "r14", "通用15": "r15"
+    }
+  }
+}
