@@ -3,6 +3,7 @@ MathFSG 形式系统语言 - 解释器
 """
 
 from .parser import parse
+from .model_checker import ModelChecker, Vulnerability
 
 
 class MathFSG:
@@ -14,6 +15,7 @@ class MathFSG:
         self.asserts = {}     # 断言
         self.symbols = {}      # 符号形式
         self.objects = {}      # 对象实例
+        self.model_checker = ModelChecker(self)  # 模型检查器
         
         # 内置类型
         self._init_builtins()
@@ -99,6 +101,34 @@ class MathFSG:
         for k, v in self.symbols.items():
             tokens_str = ' '.join([str(t.value) for t in v]) if isinstance(v, list) else str(v)
             print(f"  {{{k}}}: {tokens_str}")
+    
+    def check_all(self):
+        """运行所有模型检查"""
+        self.model_checker = ModelChecker(self)
+        return self.model_checker.check_all()
+    
+    def report_vulnerabilities(self):
+        """报告发现的漏洞"""
+        vulns = self.check_all()
+        if not vulns:
+            print("✓ 未发现漏洞")
+            return
+        
+        print(f"✗ 发现 {len(vulns)} 个潜在漏洞:\n")
+        
+        # 按类型分组
+        by_type = {}
+        for v in vulns:
+            if v.type not in by_type:
+                by_type[v.type] = []
+            by_type[v.type].append(v)
+        
+        for vtype, vulns_list in by_type.items():
+            print(f"【{vtype}】({len(vulns_list)}个)")
+            for v in vulns_list:
+                print(f"  • {v.description}")
+                print(f"    位置: {v.location}")
+            print()
 
 
 def run(source):
