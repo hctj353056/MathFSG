@@ -8,12 +8,11 @@ MathFSG demo - 一键运行形式系统语言示例
 import sys
 sys.path.insert(0, '.')
 
-from lang import MathFSG, run
+from lang import run
 
 source = """
 定义 内容
 定义 写作 '内容'
-定义 类型 写作 '类型 内容'
 定义 断言{序号} 写作 '断言{序号} 内容'
 
 类型 符号
